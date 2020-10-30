@@ -8,7 +8,7 @@ on:
       - "CODEOWNERS"
     branches:
       - '*'
-      - '!master'
+      - '!main'
 jobs:
   security:
     runs-on: ubuntu-latest
