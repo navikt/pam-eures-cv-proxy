@@ -8,5 +8,5 @@ micronaut:
 
 pam-eures-cv-eksport:
   scheme: http
-  host: ${EURES_PROXIED_HOST:localhost}
-  port: ${EURES_PROXIED_PORT:9030}
+  proxiedhost: ${EURES_PROXIED_HOST:localhost}
+  proxiedport: ${EURES_PROXIED_PORT:9030}
