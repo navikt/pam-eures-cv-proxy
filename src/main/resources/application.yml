@@ -1,0 +1,12 @@
+micronaut:
+  application:
+    name: proxy
+  server:
+    context-path: /pam-eures-cv-eksport
+    port: 9031
+
+
+pam-eures-cv-eksport:
+  scheme: http
+  host: localhost
+  port: 9030
