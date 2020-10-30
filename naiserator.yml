@@ -36,6 +36,6 @@ spec:
     - name: PROXIED_HOST
       value: {{ proxied_host }}
     - name: PROXIED_PORT
-      value: {{ proxied_port }}
+      value: "80"
   ingresses:
     - {{ ingress }}
