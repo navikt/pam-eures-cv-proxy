@@ -32,9 +32,6 @@ spec:
   prometheus:
     enabled: true
     path: /pam-eures-cv-eksport-proxy/prometheus
-
-  webproxy: true
-
   env:
     - name: EURES_PROXIED_HOST
       value: "pam-eures-cv-eksport.teampam"
