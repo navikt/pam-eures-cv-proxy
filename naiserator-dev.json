@@ -1,0 +1,6 @@
+{
+  "proxied_host": "http://pam-eures-cv-eksport.teampam",
+  "proxied_port": 80,
+
+  "ingress": "https://pam-eures-cv-eksport-proxy.dev.adeo.no"
+}

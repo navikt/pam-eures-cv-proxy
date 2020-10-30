@@ -1,0 +1,41 @@
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: pam-eures-cv-eksport-proxy
+  namespace: teampam
+  labels:
+    team: teampam
+spec:
+  image: {{ image }}
+  port: 9031
+  liveness:
+    path: /pam-eures-cv-eksport/internal/alive
+    initialDelay: 5
+  readiness:
+    path: /pam-eures-cv-eksport/internal/ready
+    initialDelay: 5
+  replicas:
+    min: 1
+    max: 2
+  cpuThresholdPercentage: 50
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 2048Mi
+    requests:
+      cpu: 200m
+      memory: 256Mi
+  accessPolicy:
+    outbound:
+      rules:
+        - application: pam-eures-cv-eksport
+  prometheus:
+    enabled: true
+    path: /pam-eures-cv-eksport-proxy/prometheus
+  env:
+    - name: PROXIED_HOST
+      value: {{ proxied_host }}
+    - name: PROXIED_PORT
+      value: {{ proxied_port }}
+  ingresses:
+    - {{ ingress }}
