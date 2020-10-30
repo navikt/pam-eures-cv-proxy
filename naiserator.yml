@@ -34,7 +34,7 @@ spec:
     path: /pam-eures-cv-eksport-proxy/prometheus
   env:
     - name: EURES_PROXIED_HOST
-      value: "http://pam-eures-cv-eksport.teampam"
+      value: "pam-eures-cv-eksport.teampam"
     - name: EURES_PROXIED_PORT
       value: "80"
   ingresses:
