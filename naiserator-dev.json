@@ -1,6 +1,3 @@
 {
-  "proxied_host": "http://pam-eures-cv-eksport.teampam",
-  "proxied_port": "80",
-
   "ingress": "https://arbeidsplassen-api.dev.nav.no/pam-eures-cv-eksport"
 }

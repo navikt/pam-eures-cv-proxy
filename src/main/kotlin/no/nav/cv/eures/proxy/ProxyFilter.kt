@@ -20,9 +20,9 @@ import java.util.function.Function
 @Filter("/input/api/cv/**")
 class ProxyFilter(
         private val client: ProxyHttpClient,
-        @Value("pam-eures-cv-eksport.scheme") private val scheme: String,
-        @Value("pam-eures-cv-eksport.host") private val host: String,
-        @Value("pam-eures-cv-eksport.port") private val port: Int
+        @Value("\${pam-eures-cv-eksport.scheme}") private val scheme: String,
+        @Value("\${pam-eures-cv-eksport.host}") private val host: String,
+        @Value("\${pam-eures-cv-eksport.port}") private val port: Int
 ) : OncePerRequestHttpServerFilter() {
 
     companion object {

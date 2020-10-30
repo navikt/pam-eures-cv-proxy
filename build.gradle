@@ -35,6 +35,7 @@ dependencies {
     implementation("io.micronaut:micronaut-http-client")
     developmentOnly("io.micronaut:micronaut-runtime-osx:$micronautVersion")
     runtimeOnly("ch.qos.logback:logback-classic")
+    runtimeOnly("net.logstash.logback:logstash-logback-encoder:6.2")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
     kaptTest(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
     kaptTest("io.micronaut:micronaut-inject-java")
