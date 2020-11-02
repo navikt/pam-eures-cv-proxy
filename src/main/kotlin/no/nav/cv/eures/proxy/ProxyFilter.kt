@@ -7,6 +7,7 @@ import io.micronaut.http.HttpRequest
 import io.micronaut.http.MutableHttpResponse
 import io.micronaut.http.annotation.Filter
 import io.micronaut.http.client.ProxyHttpClient
+import io.micronaut.http.client.annotation.Client
 import io.micronaut.http.filter.OncePerRequestHttpServerFilter
 import io.micronaut.http.filter.ServerFilterChain
 import io.micronaut.http.uri.UriBuilder
@@ -19,7 +20,7 @@ import java.util.function.Function
 
 @Filter("/input/api/cv/**")
 class ProxyFilter(
-        private val client: ProxyHttpClient,
+        @Client private val client: ProxyHttpClient,
         @Value("\${pam-eures-cv-eksport.scheme}") private val scheme: String,
         @Value("\${pam-eures-cv-eksport.proxiedhost}") private val host: String,
         @Value("\${pam-eures-cv-eksport.proxiedport}") private val port: Int
@@ -32,7 +33,7 @@ class ProxyFilter(
     }
 
     override fun doFilterOnce(request: HttpRequest<*>, chain: ServerFilterChain): Publisher<MutableHttpResponse<*>> {
-        
+
         log.info("Request recieved at ${request.path}. Forwarding to ${scheme}://${host}:${port}")
         return Publishers.map(client.proxy(
                 request.mutate()
@@ -41,7 +42,8 @@ class ProxyFilter(
                                 scheme(scheme)
                                 host(host)
                                 port(port)
-                            }
+                                replacePath(request.path)
+                            }.apply { log.debug("Constructed uri: ${toString()}") }
                         }
         ), Function {
             response: MutableHttpResponse<*> -> response })
