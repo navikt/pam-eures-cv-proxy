@@ -17,7 +17,7 @@ import java.util.function.Function
 
 
 
-//@Filter("/input/api/cv/**")
+@Filter("/input/api/cv/**")
 class ProxyFilter(
         private val client: ProxyHttpClient,
         @Value("\${pam-eures-cv-eksport.scheme}") private val scheme: String,
@@ -32,7 +32,7 @@ class ProxyFilter(
     }
 
     override fun doFilterOnce(request: HttpRequest<*>, chain: ServerFilterChain): Publisher<MutableHttpResponse<*>> {
-
+        
         log.info("Request recieved at ${request.path}. Forwarding to ${scheme}://${host}:${port}")
         return Publishers.map(client.proxy(
                 request.mutate()
@@ -43,7 +43,8 @@ class ProxyFilter(
                                 port(port)
                             }
                         }
-        ), Function { response: MutableHttpResponse<*> -> response })
+        ), Function {
+            response: MutableHttpResponse<*> -> response })
     }
 
 }

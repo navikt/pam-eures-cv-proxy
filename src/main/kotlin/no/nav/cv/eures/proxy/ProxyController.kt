@@ -1,6 +1,7 @@
 package no.nav.cv.eures.proxy
 
 import io.micronaut.context.annotation.Value
+import io.micronaut.core.async.publisher.Publishers
 import io.micronaut.http.HttpRequest
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Body
@@ -9,8 +10,10 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Post
 import io.micronaut.http.client.RxHttpClient
 import io.micronaut.http.client.annotation.Client
+import org.reactivestreams.Publisher
+import java.util.function.Function
 
-@Controller("input/api/cv/v1.0")
+@Controller("naiv/input/api/cv/v1.0")
 class ProxyController (
         @Client("\${pam-eures-cv-eksport.url}")  private val client: RxHttpClient,
         @Value("\${pam-eures-cv-eksport.scheme}") private val scheme: String,
@@ -20,7 +23,10 @@ class ProxyController (
 
 
         @Get("ping")
-        fun ping() = client.retrieve("/input/api/cv/v1.0/ping")
+        fun ping(): Publisher<String> = Publishers.map(
+                client.retrieve("/input/api/cv/v1.0/ping"),
+                Function { response: String -> response }
+        )
 
         @Get("getAll", produces = ["application/json"])
         fun getAll() =
