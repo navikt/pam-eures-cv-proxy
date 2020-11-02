@@ -34,19 +34,18 @@ class ProxyFilter(
 
     override fun doFilterOnce(request: HttpRequest<*>, chain: ServerFilterChain): Publisher<MutableHttpResponse<*>> {
 
-        log.info("Request recieved at ${request.path}. Forwarding to ${scheme}://${host}:${port}")
         return Publishers.map(client.proxy(
                 request.mutate()
-                        .uri { b: UriBuilder ->
-                            b.apply {
+                        .uri { b -> b.apply {
                                 scheme(scheme)
                                 host(host)
                                 port(port)
                                 replacePath(request.path)
-                            }.apply { log.debug("Constructed uri: ${toString()}") }
+                                log.debug("Constructed forward uri: ${toString()}")
+                            }
                         }
-        ), Function {
-            response: MutableHttpResponse<*> -> response })
+                        .body(request.body)
+        ), Function.identity())
     }
 
 }
