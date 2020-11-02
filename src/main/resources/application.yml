@@ -7,6 +7,7 @@ micronaut:
 
 
 pam-eures-cv-eksport:
+  url: ${EURES_PROXIED_URL:`http://localhost:9030/pam-eures-cv-eksport`}
   scheme: http
   proxiedhost: ${EURES_PROXIED_HOST:localhost}
   proxiedport: ${EURES_PROXIED_PORT:9030}

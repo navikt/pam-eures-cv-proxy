@@ -17,7 +17,7 @@ import java.util.function.Function
 
 
 
-@Filter("/input/api/cv/**")
+//@Filter("/input/api/cv/**")
 class ProxyFilter(
         private val client: ProxyHttpClient,
         @Value("\${pam-eures-cv-eksport.scheme}") private val scheme: String,
@@ -43,7 +43,7 @@ class ProxyFilter(
                                 port(port)
                             }
                         }
-        ), Function { response: MutableHttpResponse<*> -> response.header("X-My-Response-Header", "YYY") })
+        ), Function { response: MutableHttpResponse<*> -> response })
     }
 
 }
