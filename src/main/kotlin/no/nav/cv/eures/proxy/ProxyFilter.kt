@@ -44,8 +44,10 @@ class ProxyFilter(
                                 log.debug("Constructed forward uri: ${toString()}")
                             }
                         }
-                        .body(request.body)
-        ), Function.identity())
+                        //.body(request.body)
+        ), Function { response -> response.apply {
+            log.debug("Response status: ${status.code} $status ")
+        }})
     }
 
 }
