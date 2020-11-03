@@ -8,20 +8,9 @@ on:
       - "CODEOWNERS"
     branches:
       - main
-      - nginx_proxy
+
 jobs:
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses:  snyk/actions/gradle@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: monitor
-          args: --org=teampam
   build-and-deploy:
-#    needs: security
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1

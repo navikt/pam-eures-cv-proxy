@@ -1,4 +1,4 @@
-## Feature http-client documentation
+## Proxy for communication with EU
 
-- [Micronaut Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
+Proxy som håndterer kommunikasjon med EU. Det er en enkel nginx proxy
 
