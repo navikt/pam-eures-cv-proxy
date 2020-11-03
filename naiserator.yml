@@ -7,12 +7,12 @@ metadata:
     team: teampam
 spec:
   image: {{ image }}
-  port: 9031
+  port: 80
   liveness:
-    path: /pam-eures-cv-eksport/internal/alive
+    path: /internal/isAlive
     initialDelay: 5
   readiness:
-    path: /pam-eures-cv-eksport/internal/ready
+    path: /internal/isReady
     initialDelay: 5
   replicas:
     min: 1
@@ -29,15 +29,5 @@ spec:
     outbound:
       rules:
         - application: pam-eures-cv-eksport
-  prometheus:
-    enabled: true
-    path: /pam-eures-cv-eksport-proxy/prometheus
-  env:
-    - name: EURES_PROXIED_URL
-      value: "http://pam-eures-cv-eksport.teampam/pam-eures-cv-eksport"
-    - name: EURES_PROXIED_HOST
-      value: "pam-eures-cv-eksport.teampam"
-    - name: EURES_PROXIED_PORT
-      value: "80"
   ingresses:
     - {{ ingress }}
