@@ -30,4 +30,6 @@ spec:
       rules:
         - application: pam-eures-cv-eksport
   ingresses:
-    - {{ ingress }}
+  {{#each ingress as |url|}}
+     - {{url}}
+  {{/each}}
