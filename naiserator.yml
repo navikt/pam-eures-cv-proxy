@@ -3,7 +3,7 @@ kind: "Application"
 metadata:
   annotations:
     nais.io/read-only-file-system: "false"
-    nais.io/run-as-user: "0"
+    nais.io/run-as-user: 101
   name: pam-eures-cv-eksport-proxy
   namespace: teampam
   labels:
