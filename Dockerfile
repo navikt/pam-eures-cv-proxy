@@ -6,3 +6,4 @@ COPY isReady /www/data/internal/isReady
 
 VOLUME /var/cache/nginx
 VOLUME /var/run
+VOLUME /etc/nginx/conf.d/
