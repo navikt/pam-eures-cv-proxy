@@ -11,4 +11,3 @@ COPY initenv.sh /docker-entrypoint.d/00-initenv.sh
 RUN chmod +x /docker-entrypoint.d/00-initenv.sh
 
 EXPOSE 8080
->>>>>>> Stashed changes
