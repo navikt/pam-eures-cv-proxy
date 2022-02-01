@@ -6,7 +6,6 @@ metadata:
   labels:
     team: teampam
   annotations:
-    nais.io/run-as-user: "0"
     nais.io/read-only-file-system: "false"
 spec:
   image: {{ image }}
