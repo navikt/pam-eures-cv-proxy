@@ -1,3 +1,3 @@
 {
-  "ingress": [ "https://eures-cv-eksport.dev.nav.no", "https://eures-cv-eksport.ekstern.dev.nav.no"  ]
+  "ingress": [ "https://eures-cv-eksport.dev.nav.no", "https://eures-cv-eksport.ekstern.dev.nav.no", "https://eures-cv-eksport.intern.dev.nav.no" ]
 }
