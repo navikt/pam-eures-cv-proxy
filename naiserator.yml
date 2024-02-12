@@ -26,6 +26,11 @@ spec:
     requests:
       cpu: 200m
       memory: 256Mi
+  observability:
+    logging:
+      destinations:
+        - id: loki
+        - id: elastic
   accessPolicy:
     outbound:
       rules:
