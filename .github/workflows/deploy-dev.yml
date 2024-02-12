@@ -21,6 +21,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: pre-deploy
         uses: navikt/pam-deploy/actions/pre-deploy@v7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: build and push docker image
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -36,6 +38,8 @@ jobs:
           VARS: naiserator-dev.json
       - name: post-deploy
         uses: navikt/pam-deploy/actions/post-deploy@v7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: draft release
         uses: ncipollo/release-action@v1
         env:
