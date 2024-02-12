@@ -20,9 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: pre-deploy
-        uses: navikt/pam-deploy/actions/pre-deploy@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: navikt/pam-deploy/actions/pre-deploy@v7
       - name: build and push docker image
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -31,16 +29,13 @@ jobs:
           echo "$GITHUB_TOKEN" | docker login --username "$GITHUB_REPOSITORY" --password-stdin ghcr.io
           docker push $IMAGE
       - name: deploy to dev-gcp
-        uses: nais/deploy/actions/deploy@v1
+        uses: nais/deploy/actions/deploy@v2
         env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: naiserator.yml
           VARS: naiserator-dev.json
       - name: post-deploy
-        uses: navikt/pam-deploy/actions/post-deploy@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: navikt/pam-deploy/actions/post-deploy@v7
       - name: draft release
         uses: ncipollo/release-action@v1
         env:
