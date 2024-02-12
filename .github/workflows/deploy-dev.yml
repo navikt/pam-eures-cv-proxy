@@ -22,6 +22,7 @@ jobs:
       - name: pre-deploy
         uses: navikt/pam-deploy/actions/pre-deploy@v7
         env:
+          DRAFTS_MAX: 10
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: build and push docker image
         env:
