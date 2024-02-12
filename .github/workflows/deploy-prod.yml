@@ -17,6 +17,12 @@ jobs:
         with:
           fetch-depth: 0
           ref: ${{ env.VERSION_TAG }}
+      - name: pre-production
+        uses: navikt/pam-deploy/actions/pre-production@v7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECT_ID: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+          TEAM: teampam
       - uses: nais/deploy/actions/deploy@v2
         name: deploy to prod-gcp
         env:
