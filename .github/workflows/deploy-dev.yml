@@ -24,13 +24,19 @@ jobs:
         env:
           DRAFTS_MAX: 10
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: build and push docker image
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          docker build . --pull -t $IMAGE
-          echo "$GITHUB_TOKEN" | docker login --username "$GITHUB_REPOSITORY" --password-stdin ghcr.io
-          docker push $IMAGE
+          PROJECT_ID: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+          TEAM: teampam
+      - name: docker-build-push
+        uses: nais/docker-build-push@v0
+        id: docker-build-push
+        with:
+          team: teampam
+          tag: ${{ env.VERSION_TAG }}
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
+          dockerfile: Dockerfile
+          build_args: |
+            "VERSION_TAG=${{ env.VERSION_TAG }}"
       - name: deploy to dev-gcp
         uses: nais/deploy/actions/deploy@v2
         env:
