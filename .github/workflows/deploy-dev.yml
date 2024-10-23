@@ -2,12 +2,12 @@ name: build-deploy-dev
 on:
   push:
     paths-ignore:
-      - "**.md"
       - ".gitignore"
       - "LICENCE"
       - "CODEOWNERS"
     branches:
       - main
+      - feature/nyere_nginx_image
 
 jobs:
   build-and-deploy:
