@@ -8,4 +8,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY initenv.sh /docker-entrypoint.d/00-initenv.sh
 RUN chmod +x /docker-entrypoint.d/00-initenv.sh
 
+RUN apt-get update && \
+    apt-get upgrade curl
+
 EXPOSE 8080
