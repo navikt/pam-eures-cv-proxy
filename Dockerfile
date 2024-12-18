@@ -1,5 +1,14 @@
 FROM nginx:latest
 
+RUN echo "$USER"
+
+USER root
+RUN echo "$USER"
+RUN apt-get update && \
+     apt-get upgrade curl
+
+USER docker
+RUN echo "$USER"
 RUN sed -i 's/^nginx:x:[0-9]*:/nginx:x:1069:/' /etc/group
 RUN sed -i 's|^nginx:x:[0-9]*:[0-9]*:\([^:]*\):/nonexistent|nginx:x:1069:1069:\1:/tmp/nginx|' /etc/passwd
 
